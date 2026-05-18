@@ -15,3 +15,23 @@
 
 #### Очистка после проверок
 Удаление всех ресурсов и кластера minikube:`minikube delete` \
+
+helm install my-database bitnami/postgresql -f my-values.yaml -n databases
+
+
+команда установки БД из helm, вместе с файлом values.yaml.
+команда применения первоначальных миграций
+команда kubectl apply -f, которая запускает в правильном порядке манифесты кубернетеса
+
+коллекцию newman run коллекция_постман
+
+helm install my-database bitnami/postgresql -f my-values.yaml -n databases
+helm install <имя_релиза> <название_чарта> -f values.yaml -n <пространство_имен>
+<имя_релиза> — ваше название для устанавливаемой базы данных (например, my-db).
+<название_чарта> — путь к локальному чарту или имя из удаленного репозитория (например, bitnami/postgresql).
+-f values.yaml (или --values) — путь к вашему файлу с настройками, который задает пароли, размеры хранилища, ресурсы и другие параметры.-n 
+<пространство_имен> — namespace в Kubernetes, куда будет установлена БД. Если пространства имен еще нет, можно добавить флаг --create-namespace.
+
+helm install my-app Chart -f values.yaml
+
+helm install my-app ./mychart 

@@ -1,10 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: user-app-cm
+  name: db-config
 data:
-  dbuser: "sa"
-  dbpass: "asdfgh"
-  dbconfig: |
-    dbuser: adminljshdfjlshfjlsdhfjlsfhl
-    dbpass: qwerty
+  DB_URL: "jdbc:postgresql://postgres-service:5432/my_database"

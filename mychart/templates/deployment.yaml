@@ -1,24 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-app-dp
+  name: {{ include "mychart.fullname" . }}
   labels:
-    pp: user-app-dp
+    {{- include "mychart.labels" . | nindent 4 }}
 spec:
-  replicas: 2
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
-      app: user-app
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: user-app
+        {{- include "mychart.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       containers:
-        - name: kuber-user-app
-          image: kseniasharapova/user-app:1.0.0
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}
           ports:
-            - containerPort: 8000
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
           env:
             - name: DB_URL
               valueFrom:
