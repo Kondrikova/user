@@ -43,5 +43,5 @@ auth:
   postgresPassword: "dXNlcg=="
 
 database:
-  url: "jdbc:postgresql://postgres-service:5432/mydb"
+  url: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/mydb"
 
