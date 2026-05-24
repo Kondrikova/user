@@ -18,8 +18,9 @@
 
 helm install my-database bitnami/postgresql -f my-values.yaml -n databases
 
-kubectl describe pod user-app-6b8c47c775-rgrrp
+kubectl describe pod user-app-postgresql-0
 kubectl get pod
+helm uninstall user-app
 
 kubectl logs user-app-58cc694f44-695b6
 

@@ -43,5 +43,21 @@ auth:
   postgresPassword: "dXNlcg=="
 
 database:
-  url: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/mydb"
+  url: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/{{ .Values.postgresql.auth.database }}"
 
+
+postgresql:
+  image:
+    registry: docker.io
+    repository: library/postgres
+    tag: "16-alpine"
+  # Адаптируем переменные для официального образа postgres
+  auth:
+    postgresPassword: "PostgresPassword123"
+    username: "postgres"
+    password: "UserPassword123"
+    database: "mydb"
+  primary:
+    persistence:
+      enabled: false
+  architecture: "standalone"
