@@ -14,11 +14,24 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "mychart.labels" . | nindent 8 }}
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for postgres to be ready..."
+              until nc -z -v -w3 {{ .Release.Name }}-postgresql 5432; do
+                echo "Postgres is unavailable - sleeping"
+                sleep 2
+              done
+              echo "Postgres is up and running!"
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}
@@ -36,7 +49,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "mychart.fullname" . }}
-                  key: DB_USER
+                  key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:

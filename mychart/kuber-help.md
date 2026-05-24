@@ -4,7 +4,7 @@
 #### Запуск
 Запуск minikube: `minikube start` \
 Создание сущностей deployments, service, ingress: `kubectl apply -f .` \
-`helm install my-app ./mychart`
+`helm dependency update ./mychart`
 #### Проверка работы приложения
 `curl http://arch.homework/` возвращает `Application is running!` 
 
@@ -18,6 +18,10 @@
 
 helm install my-database bitnami/postgresql -f my-values.yaml -n databases
 
+kubectl describe pod user-app-6b8c47c775-rgrrp
+kubectl get pod
+
+kubectl logs user-app-58cc694f44-695b6
 
 команда установки БД из helm, вместе с файлом values.yaml.
 команда применения первоначальных миграций
