@@ -4,11 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
     private UserRepository userRepository;
-
+    @GetMapping("/user")
+    public List<User> gerUser() {
+        return userRepository.findAll();
+    }
     @GetMapping("/user/{userId}")
     public User gerUser(@PathVariable int userId) {
         return userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException(userId));
