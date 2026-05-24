@@ -36,37 +36,29 @@ volumes: []
   #   secret:
   #     secretName: mysecret
   #     optional: false
-auth:
-  enablePostgresUser: true
-  username: "dXNlcg=="
-  password: "MTIzNDU="
-  postgresPassword: "dXNlcg=="
 
 database:
-  url: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/{{ .Values.postgresql.auth.database }}"
+  url: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/mydb"
 
+# Параметры для подчарта базы данных PostgreSQL
 postgresql:
   image:
-    registry: ""                  # Пустое значение, так как образ локальный
-    repository: my-local-postgres # Имя нашего собранного образа
-    tag: "16"                     # Тег нашего образа
-    pullPolicy: IfNotPresent      # Важно! Говорит Kubelet брать локальный образ
-
-  containerExtraEnv:
-    - name: POSTGRES_PASSWORD
-      value: "SuperSecurePostgresPassword123"
-    - name: POSTGRES_USER
-      value: "postgres"
-    - name: POSTGRES_DB
-      value: "mydb"
-
-  auth:
-    database: "mydb"
-    postgresPassword: "SuperSecurePostgresPassword123"
-    username: "postgres"
-    password: "SuperSecurePostgresPassword123"
+    registry: docker.io
+    repository: library/postgres
+    tag: "16-alpine"
 
   primary:
     persistence:
-      enabled: false  # Диски отключены для мгновенного старта
-  architecture: "standalone"
+      enabled: false
+  volumePermissions:
+    enabled: false
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+
+  auth:
+    database: "mydb"
+    postgresPassword: "PostgresPassword123"
+    username: "postgres"
+    password: "PostgresPassword123"
