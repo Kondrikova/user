@@ -4,7 +4,7 @@
 #### Запуск
 Запуск minikube: `minikube start` \
 Создание сущностей deployments, service, ingress: `kubectl apply -f .` \
-
+`helm install my-app ./mychart`
 #### Проверка работы приложения
 `curl http://arch.homework/` возвращает `Application is running!` 
 
@@ -34,4 +34,7 @@ helm install <имя_релиза> <название_чарта> -f values.yaml 
 
 helm install my-app Chart -f values.yaml
 
-helm install my-app ./mychart 
+helm install my-app ./mychart
+
+helm dependency update ./mychart
+

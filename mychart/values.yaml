@@ -14,6 +14,9 @@ service:
   type: ClusterIP
   port: 8000
 
+httpRoute:
+  enabled: false
+
 ingress:
   enabled: true
   className: "nginx"
@@ -39,3 +42,7 @@ auth:
   enablePostgresUser: true
   username: "dXNlcg=="
   password: "MTIzNDU="
+  postgresPassword: "dXNlcg=="
+
+database:
+  url: "jdbc:postgresql://postgres-service:5432/mydb"

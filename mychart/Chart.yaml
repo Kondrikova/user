@@ -5,6 +5,8 @@ type: application
 version: 0.1.0
 appVersion: "1.16.0"
 dependencies:
-  - name: postgresql
-    version: "16.x.x"
-    repository: "https://charts.bitnami.com/bitnami"
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 2.31.4
+digest: sha256:fc442e77200e1914dd46fe26490dcf62f44caa51db673c2f8e67d5319cd4c163
+generated: "2025-08-14T15:30:01.842897577Z"
