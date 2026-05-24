@@ -1,6 +1,5 @@
 package otus.restful.user;
 
-import com.google.errorprone.annotations.InlineMeValidationDisabled;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Email;
