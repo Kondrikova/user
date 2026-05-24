@@ -6,6 +6,6 @@ RUN gradle clean bootJar --no-daemon
 
 FROM azul/zulu-openjdk-alpine:21-jre
 WORKDIR /app
-COPY --from=build /app/build/libs/health-*.jar app.jar
+COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8000
 ENTRYPOINT ["java", "-jar", "app.jar"]

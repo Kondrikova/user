@@ -38,7 +38,7 @@ volumes: []
   #     optional: false
 
 database:
-  url: "jdbc:postgresql://{{ .Release.Name }}-postgresql:5432/mydb"
+  url: "jdbc:postgresql://user-app-postgresql:5432/mydb"
 
 # Параметры для подчарта базы данных PostgreSQL
 postgresql:

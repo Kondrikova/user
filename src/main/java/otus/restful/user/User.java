@@ -9,10 +9,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Table("user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
