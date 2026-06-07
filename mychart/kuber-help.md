@@ -10,7 +10,7 @@
 Запуск : `minikube tunnel`
 
 #### Проверка работы приложения
-`curl http://arch.homework/user` возвращает `Application is running!`
+`newman run postman/user_api_collection.json` 
 
 #### Описание сущностей:
 - deployments - `dp.yaml`
@@ -21,5 +21,5 @@
 Удаление всех ресурсов и кластера minikube:`minikube delete` \
 
 #### Полезное
-
-
+Сборка image: `docker build -t kseniasharapova/user-app:1.0.0 .`
+Логи пода `kubectl logs podName`
