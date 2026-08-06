@@ -146,7 +146,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n\t\"userName\": \"KSharapova\"\n}",
+          "raw": "{\n\t\"userName\": \"KSharapova\",\n    \"firstName\": \"Kseniia\",\n    \"lastName\": \"Sharapova\",\n    \"email\": \"KSharapova@email.ru\",\n    \"phone\": \"88005553535\"\n}",
           "options": {
             "raw": {
               "language": "json"

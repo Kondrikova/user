@@ -5,9 +5,10 @@
 Запуск minikube: `minikube start` \
 Установка chart: `helm install user-app ./mychart` \
 Установка адреса для ingress: `minikube addons enable ingress` \
+Прописать локальный DNS для хоста из Ingress: `echo "127.0.0.1 arch.homework" | sudo tee -a /etc/hosts` \
 Проверка статуса подов: `kubectl get pod` \
 Проверка наличия адреса для ingress: `kubectl get ingress` \
-Запуск : `minikube tunnel`
+Запуск (после появления адреса для ingress): `minikube tunnel`
 
 #### Проверка работы приложения
 `newman run postman/user_api_collection.json` 
