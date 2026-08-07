@@ -1,0 +1,64 @@
+replicaCount: 2
+
+autoscaling:
+  enabled: false
+
+image:
+  repository: kseniasharapova/user-app:1.0.0
+  pullPolicy: IfNotPresent
+  tag: "user-app"
+
+nameOverride: "user-app"
+fullnameOverride: "user-app"
+
+podLabels: {
+  "app": "user-app"
+}
+service:
+  type: ClusterIP
+  port: 8000
+
+httpRoute:
+  enabled: false
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: arch.homework
+      paths:
+        - path: /
+          pathType: Prefix
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+  # - name: foo
+  #   secret:
+  #     secretName: mysecret
+  #     optional: false
+
+database:
+  url: "jdbc:postgresql://user-app-postgresql:5432/mydb"
+
+# Параметры для подчарта базы данных PostgreSQL
+postgresql:
+  image:
+    registry: docker.io
+    repository: library/postgres
+    tag: "16-alpine"
+
+  primary:
+    persistence:
+      enabled: false
+  volumePermissions:
+    enabled: false
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+
+  auth:
+    database: "mydb"
+    postgresPassword: "PostgresPassword123"
+    username: "postgres"
+    password: "PostgresPassword123"
