@@ -55,3 +55,9 @@ spec:
                 secretKeyRef:
                   name: {{ include "mychart.fullname" . }}
                   key: password
+            - name: fail-rate
+              value: "0.03"
+            - name: delay-mean
+              value: "300"
+            - name: delay-deviation
+              value: "100"

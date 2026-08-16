@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -39,12 +40,12 @@ public class UserController {
     @PutMapping("/user/{userId}")
     public ResponseEntity<User> updateUser(@PathVariable int userId, @RequestBody User user) {
         return userRepository.findById(userId).map(existingUser -> {
-            existingUser.setEmail(user.getEmail());
-            existingUser.setFirstName(user.getFirstName());
-            existingUser.setLastName(user.getFirstName());
-            existingUser.setPhone(user.getPhone());
-            User updatedUser = userRepository.save(existingUser);
-            return ResponseEntity.ok(updatedUser);
+            Optional.ofNullable(user.getUserName()).ifPresent(existingUser::setUserName);
+            Optional.ofNullable(user.getFirstName()).ifPresent(existingUser::setFirstName);
+            Optional.ofNullable(user.getLastName()).ifPresent(existingUser::setLastName);
+            Optional.ofNullable(user.getEmail()).ifPresent(existingUser::setEmail);
+            Optional.ofNullable(user.getPhone()).ifPresent(existingUser::setPhone);
+            return ResponseEntity.ok(existingUser);
         }).orElseGet(()-> ResponseEntity.notFound().build());
     }
 }

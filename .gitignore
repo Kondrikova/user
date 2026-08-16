@@ -1,4 +1,4 @@
-HELP.md
+HW_Prometheus_Grafana.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
